@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0">
+  <Operation Name="Rename Refactor" Key="d390f7a2-9a9b-4533-9fa7-089aaa8bf521" ChangeDateTime="11/02/2019 14:19:12" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[ETAT_SANTE].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ETAT_SANTE]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="9e58f63c-dc7e-4b67-93f5-8c1cf8b3d0c2" ChangeDateTime="11/02/2019 14:22:02" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[ETAT_SANTE].[MONOIFILAMENT_PD_COTE]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ETAT_SANTE]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="MONOFILAMENT_PD_COTE" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="70ed82ac-ec0d-43bb-9d43-3af5922dc120" ChangeDateTime="11/02/2019 14:24:03" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[ETAT_SANTE].[PROTHESE_HANCE_D]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ETAT_SANTE]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="PROTHESE_HANCHE_D" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="2301b6dd-6302-4dc0-b45a-edbdb5eaa32b" ChangeDateTime="11/02/2019 14:49:10" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[SOIN].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[SOIN]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="eb2c9db3-2945-40ef-9342-42ec1a285e4c" ChangeDateTime="11/02/2019 15:42:55" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[LOCALITE].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[LOCALITE]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="dcf52525-db8b-46ff-b5c9-b71ed45d7969" ChangeDateTime="11/02/2019 16:08:16" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[ETAT_SANTE].[HYPERKERATOSES_COR_PERI-UNGUEAL]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ETAT_SANTE]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="HYPERKERATOSES_COR_PERI_UNGUEAL" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="3456a476-df26-4dd6-a49c-8f90e628827f" ChangeDateTime="11/02/2019 16:08:20" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[ETAT_SANTE].[HYPERKERATOSES_COR_PERI-UNGUEAL_DESC]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ETAT_SANTE]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="HYPERKERATOSES_COR_PERI_UNGUEAL_DESC" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="e7f637ba-44ee-496b-b5d4-653d3226ae45" ChangeDateTime="11/02/2019 16:08:23" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[ETAT_SANTE].[HYPERKERATOSES_COR_SOUS-UNGUEAL]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ETAT_SANTE]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="HYPERKERATOSES_COR_SOUS_UNGUEAL" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="4a77c482-c8d4-49f6-8184-19d4e63d93c0" ChangeDateTime="11/02/2019 16:08:31" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[ETAT_SANTE].[HYPERKERATOSES_COR_SOUS-UNGUEAL_DESC]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ETAT_SANTE]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="HYPERKERATOSES_COR_SOUS_UNGUEAL_DESC" />
+  </Operation>
+</Operations>

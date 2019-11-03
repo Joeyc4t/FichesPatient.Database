@@ -1,0 +1,257 @@
+﻿/*
+Script de déploiement pour FichePatient.Database
+
+Ce code a été généré par un outil.
+La modification de ce fichier peut provoquer un comportement incorrect et sera perdue si
+le code est régénéré.
+*/
+
+GO
+SET ANSI_NULLS, ANSI_PADDING, ANSI_WARNINGS, ARITHABORT, CONCAT_NULL_YIELDS_NULL, QUOTED_IDENTIFIER ON;
+
+SET NUMERIC_ROUNDABORT OFF;
+
+
+GO
+:setvar DatabaseName "FichePatient.Database"
+:setvar DefaultFilePrefix "FichePatient.Database"
+:setvar DefaultDataPath "C:\Program Files\Microsoft SQL Server\MSSQL14.MSSQLSERVER\MSSQL\DATA\"
+:setvar DefaultLogPath "C:\Program Files\Microsoft SQL Server\MSSQL14.MSSQLSERVER\MSSQL\DATA\"
+
+GO
+:on error exit
+GO
+/*
+Détectez le mode SQLCMD et désactivez l'exécution du script si le mode SQLCMD n'est pas pris en charge.
+Pour réactiver le script une fois le mode SQLCMD activé, exécutez ce qui suit :
+SET NOEXEC OFF; 
+*/
+:setvar __IsSqlCmdEnabled "True"
+GO
+IF N'$(__IsSqlCmdEnabled)' NOT LIKE N'True'
+    BEGIN
+        PRINT N'Le mode SQLCMD doit être activé de manière à pouvoir exécuter ce script.';
+        SET NOEXEC ON;
+    END
+
+
+GO
+USE [$(DatabaseName)];
+
+
+GO
+PRINT N'Suppression de [dbo].[FK_PATIENT_ETATSANTE]...';
+
+
+GO
+ALTER TABLE [dbo].[PATIENT] DROP CONSTRAINT [FK_PATIENT_ETATSANTE];
+
+
+GO
+PRINT N'Début de la régénération de la table [dbo].[ETAT_SANTE]...';
+
+
+GO
+BEGIN TRANSACTION;
+
+SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+
+SET XACT_ABORT ON;
+
+CREATE TABLE [dbo].[tmp_ms_xx_ETAT_SANTE] (
+    [ID]                                            INT  IDENTITY (1, 1) NOT NULL,
+    [AUTO_EXAMEN_POSSIBLE]                          BIT  NOT NULL,
+    [AUTO_EXAMEN_POSSIBLE_DESC]                     TEXT NULL,
+    [MONOFILAMENT_PG_FAIT]                          BIT  NOT NULL,
+    [MONOFILAMENT_PG_FAIT_DESC]                     TEXT NULL,
+    [MONOFILAMENT_PD_FAIT]                          BIT  NOT NULL,
+    [MONOFILAMENT_PD_FAIT_DESC]                     TEXT NULL,
+    [MONOFILAMENT_PG_COTE]                          INT  NULL,
+    [MONOFILAMENT_PD_COTE]                          INT  NULL,
+    [DIABETE_TYPE_1]                                BIT  NOT NULL,
+    [DIABETE_TYPE_1_DESC]                           TEXT NULL,
+    [DIABETE_TYPE_2]                                BIT  NOT NULL,
+    [DIABETE_TYPE_2_DESC]                           TEXT NULL,
+    [DIABETE_SECONDAIRE]                            BIT  NOT NULL,
+    [DIABETE_SECONDAIRE_DESC]                       TEXT NULL,
+    [PROTHESE_GENOU_G]                              BIT  NOT NULL,
+    [PROTHESE_GENOU_G_DESC]                         TEXT NULL,
+    [PROTHESE_GENOU_D]                              BIT  NOT NULL,
+    [PROTHESE_GENOU_D_DESC]                         TEXT NULL,
+    [PROTHESE_HANCHE_D]                             BIT  NOT NULL,
+    [PROTHESE_HANCHE_D_DESC]                        TEXT NULL,
+    [PROTHESE_HANCHE_G]                             BIT  NOT NULL,
+    [PROTHESE_HANCHE_G_DESC]                        TEXT NULL,
+    [MALADIES_CARDIAQUES]                           BIT  NOT NULL,
+    [MALADIES_CARDIAQUES_DESC]                      TEXT NULL,
+    [VALVE_CARDIAQUE]                               BIT  NOT NULL,
+    [VALVE_CARDIAQUE_DESC]                          TEXT NULL,
+    [ANTI_COAGULANT]                                BIT  NOT NULL,
+    [ANTI_COAGULANT_DESC]                           TEXT NULL,
+    [THYROIDE]                                      BIT  NOT NULL,
+    [THYROIDE_DESC]                                 TEXT NULL,
+    [TRANSPLANTE_RENAL]                             BIT  NOT NULL,
+    [TRANSPLANTE_RENAL_DESC]                        TEXT NULL,
+    [ALLERGIES]                                     BIT  NOT NULL,
+    [ALLERGIES_DESC]                                TEXT NULL,
+    [AUTRE]                                         BIT  NOT NULL,
+    [AUTRE_DESC]                                    TEXT NULL,
+    [CIRCULATION_SANGUINE_NORMALE]                  BIT  NOT NULL,
+    [CIRCULATION_SANGUINE_NORMALE_DESC]             TEXT NULL,
+    [CIRCULATION_SANGUINE_VARICES]                  BIT  NOT NULL,
+    [CIRCULATION_SANGUINE_VARICES_DESC]             TEXT NULL,
+    [CIRCULATION_SANGUINE_OEDEME]                   BIT  NOT NULL,
+    [CIRCULATION_SANGUINE_OEDEME_DESC]              TEXT NULL,
+    [TROUBLE_SUDATION_ANIDROSE]                     BIT  NOT NULL,
+    [TROUBLE_SUDATION_ANIDROSE_DESC]                TEXT NULL,
+    [TROUBLE_SUDATION_HYPERHYDROSE]                 BIT  NOT NULL,
+    [TROUBLE_SUDATION_HYPERHYDROSE_DESC]            TEXT NULL,
+    [TROUBLE_SUDATION_BROMIDROSE]                   BIT  NOT NULL,
+    [TROUBLE_SUDATION_BROMIDROSE_DESC]              TEXT NULL,
+    [HYPERKERATOSES_DURILLON]                       BIT  NOT NULL,
+    [HYPERKERATOSES_DURILLON_DESC]                  TEXT NULL,
+    [HYPERKERATOSES_COR_PERI_UNGUEAL]               BIT  NOT NULL,
+    [HYPERKERATOSES_COR_PERI_UNGUEAL_DESC]          TEXT NULL,
+    [HYPERKERATOSES_COR_SOUS_UNGUEAL]               BIT  NOT NULL,
+    [HYPERKERATOSES_COR_SOUS_UNGUEAL_DESC]          TEXT NULL,
+    [HYPERKERATOSES_COR_ARTICULATION_INTERPHA]      BIT  NOT NULL,
+    [HYPERKERATOSES_COR_ARTICULATION_INTERPHA_DESC] TEXT NULL,
+    [HYPERKERATOSES_COR_PULPAIRE]                   BIT  NOT NULL,
+    [HYPERKERATOSES_COR_PULPAIRE_DESC]              TEXT NULL,
+    [HYPERKERATOSES_COR_PLANTAIRE]                  BIT  NOT NULL,
+    [HYPERKERATOSES_COR_PLANTAIRE_DESC]             TEXT NULL,
+    [HYPERKERATOSES_OEIL_PERDRIX]                   BIT  NOT NULL,
+    [HYPERKERATOSES_OEIL_PERDRIX_DESC]              TEXT NULL,
+    [HYPERKERATOSES_AMPOULE]                        BIT  NOT NULL,
+    [HYPERKERATOSES_AMPOULE_DESC]                   TEXT NULL,
+    [HYPERKERATOSES_RHAGADE]                        BIT  NOT NULL,
+    [HYPERKERATOSES_RHAGADE_DESC]                   TEXT NULL,
+    [HYPERKERATOSES_ECZEMA]                         BIT  NOT NULL,
+    [HYPERKERATOSES_ECZEMA_DESC]                    TEXT NULL,
+    [HYPERKERATOSES_VERRUE]                         BIT  NOT NULL,
+    [HYPERKERATOSES_VERRUE_DESC]                    TEXT NULL,
+    [HYPERKERATOSES_PSORIASIS]                      BIT  NOT NULL,
+    [HYPERKERATOSES_PSORIASIS_DESC]                 TEXT NULL,
+    [REMARQUES]                                     TEXT NULL,
+    PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+
+IF EXISTS (SELECT TOP 1 1 
+           FROM   [dbo].[ETAT_SANTE])
+    BEGIN
+        SET IDENTITY_INSERT [dbo].[tmp_ms_xx_ETAT_SANTE] ON;
+        INSERT INTO [dbo].[tmp_ms_xx_ETAT_SANTE] ([ID], [AUTO_EXAMEN_POSSIBLE], [AUTO_EXAMEN_POSSIBLE_DESC], [MONOFILAMENT_PG_FAIT], [MONOFILAMENT_PG_FAIT_DESC], [MONOFILAMENT_PD_FAIT], [MONOFILAMENT_PD_FAIT_DESC], [MONOFILAMENT_PG_COTE], [MONOFILAMENT_PD_COTE], [DIABETE_TYPE_1], [DIABETE_TYPE_1_DESC], [DIABETE_TYPE_2], [DIABETE_TYPE_2_DESC], [DIABETE_SECONDAIRE], [DIABETE_SECONDAIRE_DESC], [PROTHESE_GENOU_G], [PROTHESE_GENOU_G_DESC], [PROTHESE_GENOU_D], [PROTHESE_GENOU_D_DESC], [PROTHESE_HANCHE_D], [PROTHESE_HANCHE_D_DESC], [PROTHESE_HANCHE_G], [PROTHESE_HANCHE_G_DESC], [MALADIES_CARDIAQUES], [MALADIES_CARDIAQUES_DESC], [VALVE_CARDIAQUE], [VALVE_CARDIAQUE_DESC], [ANTI_COAGULANT], [ANTI_COAGULANT_DESC], [THYROIDE], [THYROIDE_DESC], [TRANSPLANTE_RENAL], [TRANSPLANTE_RENAL_DESC], [ALLERGIES], [ALLERGIES_DESC], [AUTRE], [AUTRE_DESC], [CIRCULATION_SANGUINE_NORMALE], [CIRCULATION_SANGUINE_NORMALE_DESC], [CIRCULATION_SANGUINE_VARICES], [CIRCULATION_SANGUINE_VARICES_DESC], [CIRCULATION_SANGUINE_OEDEME], [CIRCULATION_SANGUINE_OEDEME_DESC], [TROUBLE_SUDATION_ANIDROSE], [TROUBLE_SUDATION_ANIDROSE_DESC], [TROUBLE_SUDATION_HYPERHYDROSE], [TROUBLE_SUDATION_HYPERHYDROSE_DESC], [TROUBLE_SUDATION_BROMIDROSE], [TROUBLE_SUDATION_BROMIDROSE_DESC], [HYPERKERATOSES_DURILLON], [HYPERKERATOSES_DURILLON_DESC], [HYPERKERATOSES_COR_PERI_UNGUEAL], [HYPERKERATOSES_COR_PERI_UNGUEAL_DESC], [HYPERKERATOSES_COR_SOUS_UNGUEAL], [HYPERKERATOSES_COR_SOUS_UNGUEAL_DESC], [HYPERKERATOSES_COR_ARTICULATION_INTERPHA], [HYPERKERATOSES_COR_ARTICULATION_INTERPHA_DESC], [HYPERKERATOSES_COR_PULPAIRE], [HYPERKERATOSES_COR_PULPAIRE_DESC], [HYPERKERATOSES_COR_PLANTAIRE], [HYPERKERATOSES_COR_PLANTAIRE_DESC], [HYPERKERATOSES_OEIL_PERDRIX], [HYPERKERATOSES_OEIL_PERDRIX_DESC], [HYPERKERATOSES_AMPOULE], [HYPERKERATOSES_AMPOULE_DESC], [HYPERKERATOSES_RHAGADE], [HYPERKERATOSES_RHAGADE_DESC], [HYPERKERATOSES_ECZEMA], [HYPERKERATOSES_ECZEMA_DESC], [HYPERKERATOSES_VERRUE], [HYPERKERATOSES_VERRUE_DESC], [HYPERKERATOSES_PSORIASIS], [HYPERKERATOSES_PSORIASIS_DESC], [REMARQUES])
+        SELECT   [ID],
+                 [AUTO_EXAMEN_POSSIBLE],
+                 [AUTO_EXAMEN_POSSIBLE_DESC],
+                 [MONOFILAMENT_PG_FAIT],
+                 [MONOFILAMENT_PG_FAIT_DESC],
+                 [MONOFILAMENT_PD_FAIT],
+                 [MONOFILAMENT_PD_FAIT_DESC],
+                 [MONOFILAMENT_PG_COTE],
+                 [MONOFILAMENT_PD_COTE],
+                 [DIABETE_TYPE_1],
+                 [DIABETE_TYPE_1_DESC],
+                 [DIABETE_TYPE_2],
+                 [DIABETE_TYPE_2_DESC],
+                 [DIABETE_SECONDAIRE],
+                 [DIABETE_SECONDAIRE_DESC],
+                 [PROTHESE_GENOU_G],
+                 [PROTHESE_GENOU_G_DESC],
+                 [PROTHESE_GENOU_D],
+                 [PROTHESE_GENOU_D_DESC],
+                 [PROTHESE_HANCHE_D],
+                 [PROTHESE_HANCHE_D_DESC],
+                 [PROTHESE_HANCHE_G],
+                 [PROTHESE_HANCHE_G_DESC],
+                 [MALADIES_CARDIAQUES],
+                 [MALADIES_CARDIAQUES_DESC],
+                 [VALVE_CARDIAQUE],
+                 [VALVE_CARDIAQUE_DESC],
+                 [ANTI_COAGULANT],
+                 [ANTI_COAGULANT_DESC],
+                 [THYROIDE],
+                 [THYROIDE_DESC],
+                 [TRANSPLANTE_RENAL],
+                 [TRANSPLANTE_RENAL_DESC],
+                 [ALLERGIES],
+                 [ALLERGIES_DESC],
+                 [AUTRE],
+                 [AUTRE_DESC],
+                 [CIRCULATION_SANGUINE_NORMALE],
+                 [CIRCULATION_SANGUINE_NORMALE_DESC],
+                 [CIRCULATION_SANGUINE_VARICES],
+                 [CIRCULATION_SANGUINE_VARICES_DESC],
+                 [CIRCULATION_SANGUINE_OEDEME],
+                 [CIRCULATION_SANGUINE_OEDEME_DESC],
+                 [TROUBLE_SUDATION_ANIDROSE],
+                 [TROUBLE_SUDATION_ANIDROSE_DESC],
+                 [TROUBLE_SUDATION_HYPERHYDROSE],
+                 [TROUBLE_SUDATION_HYPERHYDROSE_DESC],
+                 [TROUBLE_SUDATION_BROMIDROSE],
+                 [TROUBLE_SUDATION_BROMIDROSE_DESC],
+                 [HYPERKERATOSES_DURILLON],
+                 [HYPERKERATOSES_DURILLON_DESC],
+                 [HYPERKERATOSES_COR_PERI_UNGUEAL],
+                 [HYPERKERATOSES_COR_PERI_UNGUEAL_DESC],
+                 [HYPERKERATOSES_COR_SOUS_UNGUEAL],
+                 [HYPERKERATOSES_COR_SOUS_UNGUEAL_DESC],
+                 [HYPERKERATOSES_COR_ARTICULATION_INTERPHA],
+                 [HYPERKERATOSES_COR_ARTICULATION_INTERPHA_DESC],
+                 [HYPERKERATOSES_COR_PULPAIRE],
+                 [HYPERKERATOSES_COR_PULPAIRE_DESC],
+                 [HYPERKERATOSES_COR_PLANTAIRE],
+                 [HYPERKERATOSES_COR_PLANTAIRE_DESC],
+                 [HYPERKERATOSES_OEIL_PERDRIX],
+                 [HYPERKERATOSES_OEIL_PERDRIX_DESC],
+                 [HYPERKERATOSES_AMPOULE],
+                 [HYPERKERATOSES_AMPOULE_DESC],
+                 [HYPERKERATOSES_RHAGADE],
+                 [HYPERKERATOSES_RHAGADE_DESC],
+                 [HYPERKERATOSES_ECZEMA],
+                 [HYPERKERATOSES_ECZEMA_DESC],
+                 [HYPERKERATOSES_VERRUE],
+                 [HYPERKERATOSES_VERRUE_DESC],
+                 [HYPERKERATOSES_PSORIASIS],
+                 [HYPERKERATOSES_PSORIASIS_DESC],
+                 [REMARQUES]
+        FROM     [dbo].[ETAT_SANTE]
+        ORDER BY [ID] ASC;
+        SET IDENTITY_INSERT [dbo].[tmp_ms_xx_ETAT_SANTE] OFF;
+    END
+
+DROP TABLE [dbo].[ETAT_SANTE];
+
+EXECUTE sp_rename N'[dbo].[tmp_ms_xx_ETAT_SANTE]', N'ETAT_SANTE';
+
+COMMIT TRANSACTION;
+
+SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+
+
+GO
+PRINT N'Création de [dbo].[FK_PATIENT_ETATSANTE]...';
+
+
+GO
+ALTER TABLE [dbo].[PATIENT] WITH NOCHECK
+    ADD CONSTRAINT [FK_PATIENT_ETATSANTE] FOREIGN KEY ([ETAT_SANTE_ID]) REFERENCES [dbo].[ETAT_SANTE] ([ID]);
+
+
+GO
+PRINT N'Vérification de données existantes par rapport aux nouvelles contraintes';
+
+
+GO
+USE [$(DatabaseName)];
+
+
+GO
+ALTER TABLE [dbo].[PATIENT] WITH CHECK CHECK CONSTRAINT [FK_PATIENT_ETATSANTE];
+
+
+GO
+PRINT N'Mise à jour terminée.';
+
+
+GO

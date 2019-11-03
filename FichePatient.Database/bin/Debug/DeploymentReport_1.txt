@@ -1,0 +1,21 @@
+﻿** Met en surbrillance
+     Tables à reconstruire
+       Aucun
+     Index ordonnés en clusters à supprimer
+       Aucun
+     Index ordonnés en clusters à créer.
+       Aucun
+     Problèmes de données possibles
+       La colonne [dbo].[PATIENT].[CODE_POSTAL] est en cours de suppression, des données risquent d'être perdues.
+
+** Actions de l'utilisateur
+     Modifier
+       [dbo].[PATIENT] (Table)
+     Créer
+       [dbo].[LOCALITE] (Table)
+       [dbo].[FK_PATIENT_LOCALITE] (Clé étrangère)
+
+** Actions de support
+
+La colonne [dbo].[PATIENT].[CODE_POSTAL] est en cours de suppression, des données risquent d'être perdues.
+

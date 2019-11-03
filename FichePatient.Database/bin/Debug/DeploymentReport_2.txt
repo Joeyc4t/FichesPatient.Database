@@ -1,0 +1,18 @@
+﻿** Met en surbrillance
+     Tables à reconstruire
+       Aucun
+     Index ordonnés en clusters à supprimer
+       Aucun
+     Index ordonnés en clusters à créer.
+       Aucun
+     Problèmes de données possibles
+       Aucun
+
+** Actions de l'utilisateur
+     Renommer
+       [dbo].[ETAT_SANTE].[HYPERKERATOSES_COR_PERI_UNGUEAL] (Colonne)
+       [dbo].[ETAT_SANTE].[HYPERKERATOSES_COR_PERI_UNGUEAL_DESC] (Colonne)
+       [dbo].[ETAT_SANTE].[HYPERKERATOSES_COR_SOUS_UNGUEAL] (Colonne)
+       [dbo].[ETAT_SANTE].[HYPERKERATOSES_COR_SOUS_UNGUEAL_DESC] (Colonne)
+
+** Actions de support
